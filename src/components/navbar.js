@@ -7,29 +7,33 @@ import { useEffect, useState, useRef, forwardRef } from "react";
 import "../css/nav.css";
 
 const Navbar = forwardRef((props, ref) => {
+  const SCROLL_OFFSET = 10;
+
   const { scrollY } = useViewportScroll();
   const [hidden, setHidden] = useState(false);
   const [currentSec, setSection] = useState("home");
+
   const refs = ref;
   const variants = {
     visible: { opacity: 1, y: 0 },
 
     hidden: { opacity: 0, y: -25 },
   };
+  
   function update() {
     if (
-      scrollY?.current > refs.ref1.current.offsetTop &&
-      scrollY?.current < refs.ref2.current.offsetTop
+      scrollY?.current + SCROLL_OFFSET > refs.ref1.current.offsetTop &&
+      scrollY?.current + SCROLL_OFFSET < refs.ref2.current.offsetTop
     ) {
       setSection("home");
     }
-    if (
-      scrollY?.current > refs.ref2.current.offsetTop &&
-      refs.ref3.current.offsetParent.offsetTop
+    else if (
+      scrollY?.current + SCROLL_OFFSET > refs.ref2.current.offsetTop &&
+      scrollY?.current + SCROLL_OFFSET < refs.ref3.current.offsetTop
     ) {
       setSection("about");
     }
-    if (scrollY?.current > refs.ref3.current.offsetParent.offsetTop) {
+    else if (scrollY?.current + SCROLL_OFFSET > refs.ref3.current.offsetTop) {
       setSection("pj");
     }
     if (scrollY?.current < scrollY?.prev) {
@@ -57,14 +61,7 @@ const Navbar = forwardRef((props, ref) => {
 
   return (
     <motion.nav
-      className=" row navbar navbar-light bg-light flex-row"
-      style={{
-        width: "100%",
-        zIndex: 4,
-        position: "fixed",
-        top: 0,
-        background: "",
-      }}
+      className="row navbar bg-light flex-row w-100 position-fixed"
       variants={variants}
       animate={hidden ? "hidden" : "visible"}
       whileHover={"visible"}

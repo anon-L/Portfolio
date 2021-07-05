@@ -1,4 +1,3 @@
-import greenScreen from "../img/deicut.png";
 import cover from "../img/cover.png";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, forwardRef } from "react";
@@ -8,31 +7,31 @@ import Button from "react-bootstrap/Button";
 const Home = forwardRef((props, ref) => {
   return (
     <div ref={ref}>
-      <motion.div>
-        <h1></h1>
-      </motion.div>
-      <div style={{ position: "relative" }}>
-        <img
-          src={cover}
-          alt=""
-          style={{ width: "98.5vw", height: "auto" }}
-        ></img>
-        <h1
-          style={{
-            position: "absolute",
-            top: "20%",
-            left: "2%",
-            maxWidth: "42%",
-          }}
-        >
-          {" "}
-          Hi, I'm Anon,
-          <h5>
-            but you can call me AJ. Im an aspiring software engineer currently
-            living in Bangkok. blah blah blah blah 
-          </h5>
-        </h1>
-      </div>
+      {/* <motion.div>
+        <h1>Home</h1>
+      </motion.div> */}
+      <img src={cover} className="w-100" alt="" />
+      <h1
+        style={{
+          position: "absolute",
+          top: "20%",
+          left: "2%",
+          maxWidth: "42%",
+        }}
+      >
+        Hi, I'm Anon,
+      </h1>
+      <h5
+        style={{
+          position: "absolute",
+          top: "25%",
+          left: "2%",
+          maxWidth: "42%",
+        }}
+      >
+        but you can call me AJ. Im an aspiring software engineer currently
+        living in Bangkok. blah blah blah blah
+      </h5>
     </div>
   );
 });

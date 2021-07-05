@@ -1,15 +1,12 @@
-import logo from "./logo.svg";
-import "./App.css";
 import Home from "./components/home";
 import Projects from "./components/projects";
-import { useEffect, useState, useRef } from "react";
-import Chat from "./img/chat.png";
-import { Waypoint } from "react-waypoint";
-import Cards from "./components/cards";
+import { useEffect, useRef } from "react";
 import Navbar from "./components/navbar";
 import About from "./components/about";
-import Button from "react-bootstrap/Button";
-import { motion, useViewportScroll } from "framer-motion";
+import { useViewportScroll } from "framer-motion";
+import "bootstrap/dist/css/bootstrap.min.css";
+import './custom.scss';
+import "./App.css";
 
 function App() {
   const aboutRef = useRef(null);
@@ -41,37 +38,20 @@ function App() {
     return scrollY.onChange(() => update());
   });
   return (
-    <div style={{ background: "white" }}>
-      <div className="container-fluid  ">
-        <Navbar
-          ref={{
-            ref1: homeRef,
-            ref2: aboutRef,
-            ref3: projectsRef,
-          }}
-        >
-          {" "}
-        </Navbar>
-        <div id="home" className="row " style={{ paddingTop: 60 }}>
-          <div className="col" style={{ background: "" }}>
-            <div className="row " style={{ paddingLeft: 5 }}>
-              <Home ref={homeRef}> </Home>
-            </div>
-
-            <div id="about" className="row  " style={{ paddingLeft: 5 }}>
-              <About ref={aboutRef}> </About>
-            </div>
-            <div
-              id="project"
-              className="row d-flex"
-              style={{ paddingLeft: 5, paddingRight: 5, paddingBottom: 5 }}
-            >
-              <div className="col">
-                <Projects ref={projectsRef}></Projects>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className='container-fluid  '>
+      <Navbar
+        ref={{
+          ref1: homeRef,
+          ref2: aboutRef,
+          ref3: projectsRef,
+        }}
+      >
+        {" "}
+      </Navbar>
+      <div id='body'>
+        <Home ref={homeRef}> </Home>
+        <About ref={aboutRef}> </About>
+        <Projects ref={projectsRef}></Projects>
       </div>
     </div>
   );
